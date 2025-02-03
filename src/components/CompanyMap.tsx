@@ -1,6 +1,7 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polygon } from 'react-leaflet';
+import React, { useState } from 'react';
+import { MapContainer, TileLayer, Marker, Polygon } from 'react-leaflet';
 import { Company } from '../types/company';
+import CompanyModal from './CompanyModal';
 import { parsePoints } from '../lib/utils';
 import 'leaflet/dist/leaflet.css';
 
@@ -10,6 +11,7 @@ interface CompanyMapProps {
 }
 
 export function CompanyMap({ companies }: CompanyMapProps) {
+  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const validCompanies = companies.filter(
     (company) => company.points && parsePoints(company.points)
   );
@@ -27,7 +29,8 @@ export function CompanyMap({ companies }: CompanyMapProps) {
   const center = firstPoints ? firstPoints[0] : [0, 0];
 
   return (
-    <MapContainer
+    <>
+      <MapContainer
       center={center as [number, number]}
       zoom={13}
       className="h-full w-full rounded-lg"
@@ -42,13 +45,12 @@ export function CompanyMap({ companies }: CompanyMapProps) {
 
         return (
           <React.Fragment key={company.id}>
-            <Marker position={points[0] as [number, number]}>
-              <Popup>
-                <div className="p-2">
-                  <h3 className="font-semibold">{company.description}</h3>
-                  <p className="text-sm text-gray-600">{company.address}</p>
-                </div>
-              </Popup>
+            <Marker 
+              position={points[0] as [number, number]}
+              eventHandlers={{
+                click: () => setSelectedCompany(company)
+              }}
+              >
             </Marker>
             {points.length > 2 && (
               <Polygon
@@ -63,6 +65,15 @@ export function CompanyMap({ companies }: CompanyMapProps) {
           </React.Fragment>
         );
       })}
-    </MapContainer>
+      </MapContainer>
+      
+      {selectedCompany && (
+        <CompanyModal 
+          company={selectedCompany}
+          onClose={() => setSelectedCompany(null)}
+          className="transition-all duration-300 ease-in-out"
+        />
+      )}
+    </>
   );
 }

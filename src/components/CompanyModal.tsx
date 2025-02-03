@@ -7,11 +7,12 @@ import { cn } from '../lib/utils';
 interface CompanyModalProps {
   company: Company;
   onClose: () => void;
+  className?: string;
 }
 
-export function CompanyModal({ company, onClose }: CompanyModalProps) {
+export function CompanyModal({ company, onClose, className }: CompanyModalProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+    <div className={cn("fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50", className)}>
       <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow-xl">
         <button
           onClick={onClose}
