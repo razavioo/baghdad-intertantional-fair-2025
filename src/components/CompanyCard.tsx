@@ -20,14 +20,14 @@ export function CompanyCard({ company, onClick }: CompanyCardProps) {
     >
       <div className="flex items-start justify-between mb-4">
         <h3 className={cn(
-          "text-xl font-semibold",
+          "text-xl font-semibold text-orange-600 dark:text-orange-400",
           company.decor === "1" && "font-bold"
         )}>
           {company.description}
         </h3>
         {company.golden === "1" && (
           <span className="px-2 py-1 text-xs font-semibold bg-amber-100 text-amber-800 rounded-full">
-            طلایی
+            Golden
           </span>
         )}
       </div>
@@ -59,10 +59,10 @@ export function CompanyCard({ company, onClick }: CompanyCardProps) {
           <User className="w-4 h-4" />
           <span>{company.contact}</span>
         </div>
-              
+        
         <div className="flex items-center gap-2">
           <Hash className="w-4 h-4" />
-          <span>غرفه {company.halls.join(', ')}</span>
+          <span>Booth {company.halls.join(', ')}</span>
         </div>
       </div>
 
@@ -70,12 +70,12 @@ export function CompanyCard({ company, onClick }: CompanyCardProps) {
         <div className="mt-4 pt-4 border-t border-gray-100">
           {company.products && (
             <div className="mb-2">
-              <span className="text-sm font-semibold">محصولات:</span>
+              <span className="text-sm font-semibold">Products:</span>
               <div className="flex flex-wrap gap-1 mt-1">
                 {company.products.split(',').map((product) => (
                   <span
                     key={product}
-                    className="px-2 py-1 text-xs bg-blue-50 text-blue-700 rounded"
+                    className="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded"
                   >
                     {product.trim()}
                   </span>
@@ -86,12 +86,12 @@ export function CompanyCard({ company, onClick }: CompanyCardProps) {
 
           {company.services && (
             <div>
-              <span className="text-sm font-semibold">خدمات:</span>
+              <span className="text-sm font-semibold">Services:</span>
               <div className="flex flex-wrap gap-1 mt-1">
                 {company.services.split(',').map((service) => (
                   <span
                     key={service}
-                    className="px-2 py-1 text-xs bg-green-50 text-green-700 rounded"
+                    className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded"
                   >
                     {service.trim()}
                   </span>
