@@ -1,7 +1,6 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import { Company } from '../types/company';
-import { CompanyMap } from './CompanyMap';
 import { cn } from '../lib/utils';
 
 interface CompanyModalProps {
@@ -54,12 +53,7 @@ export function CompanyModal({ company, onClose, className }: CompanyModalProps)
                   <p>طلایی: {company.golden}</p>
                 </div>
               </div>
-              {company.points && (
-                <div>
-                  <h3 className="font-semibold mb-2">نقاط</h3>
-                  <p dir="ltr">{company.points}</p>
-                </div>
-              )}
+
 
               {company.products && (
                 <div>
@@ -84,7 +78,7 @@ export function CompanyModal({ company, onClose, className }: CompanyModalProps)
                     {company.services.split(',').map((service) => (
                       <span
                         key={service}
-                        className="px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm"
+                        className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-sm"
                       >
                         {service.trim()}
                       </span>
@@ -95,9 +89,6 @@ export function CompanyModal({ company, onClose, className }: CompanyModalProps)
             </div>
           </div>
 
-          <div className="h-[400px]">
-            <CompanyMap companies={[company]} selectedCompany={company} />
-          </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import { Grid, List } from 'lucide-react';
 import { CompanyCard } from './components/CompanyCard';
 import { CompanyModal } from './components/CompanyModal';
 import { FiltersPanel } from './components/Filters';
-import { CompanyMap } from './components/CompanyMap';
 import { Company, Filters } from './types/company';
 
 import mockCompanies from './data/company.json';
@@ -36,10 +35,21 @@ function App() {
   );
 
   const filteredCompanies = mockCompanies.filter(company => {
-    const matchesSearch = filters.search
-      ? company.description.toLowerCase().includes(filters.search.toLowerCase()) ||
-        company.contact.toLowerCase().includes(filters.search.toLowerCase())
-      : true;
+        const matchesSearch = filters.search
+          ? company.description.toLowerCase().includes(filters.search.toLowerCase()) ||
+            company.contact.toLowerCase().includes(filters.search.toLowerCase()) ||
+            company.decor.toLowerCase().includes(filters.search.toLowerCase()) ||
+            company.area.toLowerCase().includes(filters.search.toLowerCase()) ||
+            company.countryShort.toLowerCase().includes(filters.search.toLowerCase()) ||
+            company.categoryShort.toLowerCase().includes(filters.search.toLowerCase()) ||
+            company.tel.toLowerCase().includes(filters.search.toLowerCase()) ||
+            company.email.toLowerCase().includes(filters.search.toLowerCase()) ||
+            company.golden.toLowerCase().includes(filters.search.toLowerCase()) ||
+            company.request.toLowerCase().includes(filters.search.toLowerCase()) ||
+            (company.services && company.services.toLowerCase().includes(filters.search.toLowerCase())) ||
+            (company.products && company.products.toLowerCase().includes(filters.search.toLowerCase())) ||
+            company.address.toLowerCase().includes(filters.search.toLowerCase())
+          : true;
 
     const matchesCategory = filters.categories.length === 0 || 
       filters.categories.includes(company.categoryShort);
@@ -99,9 +109,7 @@ function App() {
               </div>
             </div>
 
-            <div className="mb-6 h-[400px]">
-              <CompanyMap companies={filteredCompanies} />
-            </div>
+                  
 
             <div className={`grid gap-6 ${
               viewMode === 'grid' 

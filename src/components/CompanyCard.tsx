@@ -59,12 +59,7 @@ export function CompanyCard({ company, onClick }: CompanyCardProps) {
           <User className="w-4 h-4" />
           <span>{company.contact}</span>
         </div>
-        {company.points && (
-          <div className="flex items-center gap-2">
-            <MapPin className="w-4 h-4" />
-            <span dir="ltr">{company.points}</span>
-          </div>
-        )}
+              
         <div className="flex items-center gap-2">
           <Hash className="w-4 h-4" />
           <span>غرفه {company.halls.join(', ')}</span>
