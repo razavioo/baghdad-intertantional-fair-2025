@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://razavioo.github.io/baghdad-intertantional-fair-2025/sitemap.xml
