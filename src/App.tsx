@@ -35,13 +35,6 @@ function App() {
         .flat()
     )
   );
-  const products = Array.from(
-    new Set(
-      mockCompanies
-        .flatMap(c => c.products?.split(',').map(p => p.trim()) || [])
-    )
-  );
-
   const filteredCompanies = mockCompanies.filter(company => {
     const searchTerm = filters.search.toLowerCase();
     const matchesSearch = !filters.search ||
@@ -69,7 +62,7 @@ function App() {
   return (
     <div className={cn("min-h-screen font-vazir", isDarkMode ? "dark bg-gray-900 text-white" : "bg-gray-50 text-black")} style={{direction: 'ltr'}}>
       <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-4 py-8 pt-[100px] pb-[60px]">
         <div className="flex flex-col md:flex-row gap-6">
           <div className="md:w-64 flex-shrink-0">
             <FiltersPanel

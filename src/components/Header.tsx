@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export function Header({ toggleTheme, isDarkMode }: HeaderProps) {
   return (
-    <header className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow-md">
+    <header className="fixed top-0 left-0 right-0 z-10 flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow-md">
       <h1 className="text-2xl font-bold text-orange-600 dark:text-orange-400">
         Baghdad International Fair (2025)
       </h1>
